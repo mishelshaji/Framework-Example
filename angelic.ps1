@@ -21,28 +21,28 @@ function CreateProject {
     Invoke-WebRequest -Uri $path -OutFile ./download.zip
     Expand-Archive -Path ./download.zip -DestinationPath .
     Get-ChildItem -Path ./Framework-Example-main -Recurse | Move-Item -Destination . -Verbose
+    Get-ChildItem -Path ./Framework-Example-main -Recurse | Remove-Item
     Remove-Item -Path Framework-Example-main
     Remove-Item -Path download.zip
-    
+
     # Installing dependencies
     Write-Host -Object "Installing Dependencies" -ForegroundColor Magenta
     npm init --y
     npm install nodemon --save-dev
-    npm install ts-node --save-dev
     npm install handlebars --save
     npm install typescript --save
     npm install mysql2 --save
-    npm install typeorm --save
+    npm install serve-static --save
+    
     if([IO.File]::Exists('./bin.zip')){
         Expand-Archive -Path .\bin.zip -DestinationPath .
+        npm i --save ./bin
     }
     else{
-        Copy-Item -Path ../bin -Destination ./bin -Recurse
+        npm i ../Angelic/bin
     }
-    npm i --save ./bin
-    node .\app.js
+    npx nodemon .\app.js
     Write-Host -Object "Project Initialization Complete" -ForegroundColor Yellow
-    Write-Host -Object "Server is running on http://localhost" -ForegroundColor Yellow
 }
 
 function ScaffoldApp{
