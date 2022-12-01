@@ -19,6 +19,7 @@
   "author": "Mishel Shaji",
   "license": "MIT",
   "dependencies": {
+    "angelic": "file:../Angelic/bin",
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
     "serve-static": "^1.15.0",
