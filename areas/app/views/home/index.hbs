@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{> styles}}
+</head>
+
+<body>
+    {{> navbar}}
+    <div class="container">
+        <h1 class="text-center my-4" style="font-family: 'Bungee Shade', cursive;
+font-size: 500%">ANGELIC</h1>
+        <p class="text-center text-bold" style="font-family: sans-serif;">IS RUNNING!🎉🎉🎉</p>
+
+        <div style="font-family: 'Montserrat', sans-serif;">
+            <div class="row">
+                <h2 class="text-center font-bold">What's next?</h2>
+
+                <p class="mt-5"><b>✅ Enable database support:</b></p>
+                <div class="bg-dark text-light rounded shadow-lg d-flex px-2 py-3">
+                    <span>enable-migrations</span>
+                </div>
+
+                <p class="mt-5"><b>✅ Configure database connection:</b></p>
+                <div class="bg-dark text-light rounded shadow-lg px-2 py-3">
+                    <p>🗃️ .env</p>
+                    <hr>
+                    <span>DATABASE_URL="mysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;database&gt;?schema=public"</span>
+                </div>
+
+                <p class="mt-5"><b>✅ Create a model:</b></p>
+                <div class="bg-dark text-light rounded shadow-lg px-2 py-3">
+                    <p>🗃️ prisma/schema.prisma</p>
+                    <hr>
+                    <code>
+                        // This is your Prisma schema file, <br>
+                        // learn more about it in the docs: https://pris.ly/d/prisma-schema <br>
+                        generator client { <br>
+                            provider = "prisma-client-js" <br>
+                        } <br>
+                        <br>
+                        datasource db { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;provider = "mysql" <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;url      = env("DATABASE_URL") <br>
+                        } <br>
+                        <br>
+                        model Profile { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;id     Int     @id @default(autoincrement()) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;bio    String? <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;user   User    @relation(fields: [userId], references: [id]) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;userId Int     @unique <br>
+                        } <br>
+                        <br>
+                        model User { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;id	Int		@id @default(autoincrement()) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;name	String 	@db.VarChar(50) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;email	String 	@db.VarChar(100) @unique <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;age	Int 	@default(18) <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;profile	Profile? <br>
+                        }
+                    </code>
+                </div>
+
+                <p class="mt-5"><b>✅ Apply changes to the database:</b></p>
+                <div class="bg-dark text-light rounded shadow-lg px-2 py-3">
+                    <span>angelic.ps1 add-migration</span>
+                </div>
+
+                <p class="mt-5"><b>✅ Generate schema types:</b></p>
+                <div class="bg-dark text-light rounded shadow-lg px-2 py-3">
+                    <span>angelic.ps1 update-database</span>
+                </div>
+
+                <p class="mt-5"><b>✅ Query the tables:</b></p>
+                <div class="bg-dark text-light rounded shadow-lg px-2 py-3">
+                    <p>🗃️ homeController.js</p>
+                    <hr>
+                    <p>
+                        await this.dbContext.user.create({ <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;data: { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: 'User 1', <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: 'user@mail.com', <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+                        }) <br>
+                        <br>
+                        var users = await this.dbContext.user.findMany(); <br>
+                        return this.view('index', users);
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light text-center mt-5 p-4">
+        <p>Made with ❤️ by Mishel Shaji and Geekinsta</p>
+        <p>&copy; All rights reserved.</p>
+        <hr>
+        <p><small>Geekinsta is a registered trademark of Mishel Shaji.</small></p>
+    </footer>
+    {{> scripts}}
+</body>
+
+</html>
