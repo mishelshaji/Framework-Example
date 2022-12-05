@@ -1,11 +1,10 @@
 {
   "name": "my-angelic-app",
   "version": "1.0.0",
-  "description": "A new JavaScript framework.",
+  "description": "A new project.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "typeorm": "typeorm-ts-node-commonjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +15,6 @@
     "Angelic",
     "Framework"
   ],
-  "author": "Mishel Shaji",
   "license": "MIT",
   "dependencies": {
     "@prisma/client": "^4.7.1",
