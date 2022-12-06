@@ -20,10 +20,10 @@ function CreateProject {
     $path = 'https://github.com/mishelshaji/Framework-Example/archive/refs/heads/main.zip'
     Invoke-WebRequest -Uri $path -OutFile ./download.zip
     Expand-Archive -Path ./download.zip -DestinationPath .
-    Get-ChildItem -Path ./Framework-Example-main -Recurse | Move-Item -Destination . -Verbose
-    Get-ChildItem -Path ./Framework-Example-main -Recurse | Remove-Item
-    Remove-Item -Path Framework-Example-main
-    Remove-Item -Path download.zip
+    # Get-ChildItem -Path ./Framework-Example-main -Recurse | Move-Item -Destination . -Verbose
+    # Get-ChildItem -Path ./Framework-Example-main -Recurse | Remove-Item
+    # Remove-Item -Path Framework-Example-main
+    # Remove-Item -Path download.zip
 
     # Installing dependencies
     Write-Host -Object "Installing Dependencies" -ForegroundColor Magenta
